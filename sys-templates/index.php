@@ -1,3 +1,8 @@
+<?php
+	$Sys->Data['Page']['Title'] = 'Game Web-Panel';
+	$Sys->Data['Page']['Author'] = 'whocodes';
+?>
+
 <html lang="en">
 	<?php $Sys->load_template('head'); ?>
 
