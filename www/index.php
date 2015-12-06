@@ -1,4 +1,5 @@
 <?php
+	$__starttime = microtime(true);
 	define('IN_SYS', true);
 	require_once __DIR__ . '/../sys-lib/Handler.class.php';
 
@@ -18,4 +19,9 @@
 	});
 
 	$Sys->call_hook('section_retrieved', (isset($_GET['section']) ? $_GET['section'] : 'index'));
+
+
 ?>
+
+
+<!-- PHP finished in <?= microtime(true) - $__starttime ?> -->
