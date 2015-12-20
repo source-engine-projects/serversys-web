@@ -1,23 +1,20 @@
-<?php
-	$Sys->Data['Page']['Title'] = 'Game Web-Panel';
-	$Sys->Data['Page']['Author'] = 'whocodes';
-?>
-
 <html lang="en">
-	<?php $Sys->load_template('head'); ?>
+	<?php $Sys->Main->load_template('head'); ?>
 
-	<?php $Sys->load_template('header'); ?>
+	<?php $Sys->Main->load_template('header'); ?>
 
 	<div class="container">
 		<div class="row">
-			<h1>Test</h1>
+			<h1><?= $Sys->Main->Lang['index-header'] ?></h1>
 			<hr />
 			<p>
-				Just testing some stuff!
+
+				<?= $Sys->Main->Lang['index-body'] ?>
+
 			</p>
 		</div>
 	</div>
 
-	<?php $Sys->load_template('footer'); ?>
+	<?php $Sys->Main->load_template('footer'); ?>
 
 </html>

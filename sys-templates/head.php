@@ -3,8 +3,8 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="<?= $Sys->Data['URL'] ?> - server-sys web-panel">
-	<meta name="author" content="<?= $Sys->Data['Page']['Author'] ?>">
+	<meta name="description" content="<?= $Sys->Main->Data['Name'] ?> - server-sys web-panel">
+	<meta name="author" content="<?= $Sys->Main->Data['Page']['Author'] ?>">
 
 	<!-- load pace first, everything else last -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.0.2/templates/pace-theme-flash.tmpl.css">
@@ -39,4 +39,4 @@
 		<script src="/lib/js/respond.min.js"></script>
 	<![endif]-->
 
-	<title><?= $Sys->Data['Page']['Title'] ?> - <?= $Sys->Data['Name'] ?></title>
+	<title><?= $Sys->Main->Data['Page']['Title'] ?> - <?= $Sys->Main->Data['Name'] ?></title>

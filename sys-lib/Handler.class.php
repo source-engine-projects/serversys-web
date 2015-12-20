@@ -10,13 +10,6 @@ class SysHandler {
 	public $Data = ['Page' => []];
 
 	/*
-	 * Plugins array
-	 *
-	 * Key: index
-	 * Value: plugin_name
-	 */
-	private $Plugins = [];
-	/*
 	 * Hooks array
 	 *
 	 * Key: index
@@ -37,52 +30,12 @@ class SysHandler {
 	public $Lang = [];
 
 	function __construct(){
-
-		foreach(glob(__DIR__ . '/../sys-plugins/sys-*.php') as $plugin){
-
-			$this->load_plugin($plugin);
-
-			if($this->plugin_loaded($plugin))
-				$this->call_hook('plugin_load_post', $plugin);
-		}
-
 		if(isset($_COOKIE['server-sys-weblang']) && $this->valid_lang($_COOKIE['server-sys-weblang'])){
 			$this->LangName = $_COOKIE['server-sys-weblang'];
 		}else
 			$this->LangName = $this->LangName_Default;
 
 		$this->load_language($this->LangName);
-	}
-
-	/*
-	 * Checks if a plugin has been loaded.
-	 *
-	 * @param file 			File name.
-	 * @return 				bool
-	 */
-	public function plugin_loaded($file){
-		return in_array($file, $this->Plugins);
-	}
-
-	/*
-	 * Loads a plugin into our array and requires it.
-	 *
-	 * @param file 			File name.
-	 * @return 				false if already loaded, otherwise file response.
-	 */
-	public function load_plugin($file){
-		if($this->call_hook('plugin_load_pre', $plugin) == false){
-			$this->call_hook('plugin_load_abort', $plugin);
-			return false;
-		}
-
-		if($this->plugin_loaded($file)){
-			$this->call_hook('plugin_load_failed', $file);
-			return false;
-		}
-
-		$this->Plugins[] = $file;
-		return require_once $file;
 	}
 
 	/*
@@ -112,6 +65,9 @@ class SysHandler {
 		if($this->template_loaded($name))
 			return false;
 
+		if(!file_exists($file))
+			return false;
+
 		$this->Templates[$name] = $file;
 		return true;
 	}
@@ -124,10 +80,13 @@ class SysHandler {
 	 * @param name		Name of the template to load.
 	 */
 	public function load_template($name){
+		global $Sys;
+
 		if(!isset($this->Templates[$name]))
 			return false;
 
-		return require_once $this->Templates[$name]);
+
+		return require_once $this->Templates[$name];
 	}
 
 	/*
@@ -163,9 +122,12 @@ class SysHandler {
 	 * @param params		Params to send to the callback.
 	 */
 	public function call_hook($hook, $params = null){
-		foreach($this->Hooks as $name => $func){
-			if($hook == $name){
-				return call_user_func($func, $params);
+		foreach($this->Hooks as $row){
+			if(in_array($hook, $row)){
+				foreach($row as $item){
+					if(is_callable($item))
+						call_user_func($item, $params);
+				}
 			}
 		}
 	}
