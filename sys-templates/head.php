@@ -12,7 +12,7 @@
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/cyborg/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="/lib/css/scrollbar.css">
+	<link rel="stylesheet" href="<?= $Sys->Main->Data['Root'] ?>/lib/css/scrollbar.css">
 
 	<!-- favicons start -->
 	<link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
@@ -36,7 +36,7 @@
 
 	<!--[if lt IE 9]>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
-		<script src="/lib/js/respond.min.js"></script>
+		<script src="<?= $Sys->Main->Data['Root'] ?>/lib/js/respond.min.js"></script>
 	<![endif]-->
 
 	<title><?= $Sys->Main->Data['Page']['Title'] ?> - <?= $Sys->Main->Data['Name'] ?></title>

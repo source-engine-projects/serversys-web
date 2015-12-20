@@ -17,11 +17,11 @@
 
 	<?php if($Page['Server_List']){ ?>
 
-	<script src="/lib/js/serverlist-bs.js"></script>
+	<script src="<?= $Sys->Main->Data['Root'] ?>/lib/js/serverlist-bs.js"></script>
 
 	<?php }
 		if((((int)(date('n'))) == 12) && ($Page['Thank_You'] == false)){ ?>
 
-	<script src="/lib/js/snow.js"></script>
+	<script src="<?= $Sys->Main->Data['Root'] ?>/lib/js/snow.js"></script>
 
 	<?php } ?>
